@@ -9,7 +9,19 @@ export class ItemService {
   constructor() { }
 
   addItem(item: Item) {
+    if(this.items.length >0 ) {
+      item.id = this.items[this.items.length-1].id + 1;
+    } else {
+      item.id = 0;
+    }
     this.items.push(item);
+    return this;
+  }
+
+  editItemById(id: number, edited: string) {
+    this.items
+      .find(item => item.id==id)
+      .description = edited;
     return this;
   }
 
@@ -25,6 +37,10 @@ export class ItemService {
       }
     });
     return this;
+  }
+
+  getItems() {
+    return this.items;
   }
 
 }
