@@ -1,6 +1,7 @@
 const express = require('express');
 const morganBody =  require('morgan-body') ;
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const PORT = process.env.PORT || 3000;
 
 var app = express();
 var port = 3000;
@@ -50,6 +51,6 @@ app.post('/api/mark', (req, res) => {
     res.send(items);
 });
 
-app.listen(port, () => {
-    console.log("Listening at port:", port);
+app.listen(PORT, () => {
+    console.log("Listening at port:", PORT);
 });
