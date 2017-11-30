@@ -1,12 +1,22 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
 import { Item } from './item';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ItemService {
 
   private items: Item[] = [];
 
-  constructor() { }
+  constructor(private http: Http) {
+    this.http.get('/api/list')
+      .map((res:Response) => res.json())
+      .subscribe(val => {
+        this.items = val;
+        console.log('Loading initial items: ', this.items);
+      });
+  }
 
   addItem(item: Item) {
     if(this.items.length >0 ) {
@@ -14,7 +24,12 @@ export class ItemService {
     } else {
       item.id = 0;
     }
-    this.items.push(item);
+    this.http.put('/api/add', item)
+      .map((res:Response) => res.json())
+      .subscribe(val => {
+        this.items = val;
+        console.log('Updating items: ', this.items);
+      });
     return this;
   }
 
@@ -26,15 +41,21 @@ export class ItemService {
   }
 
   deleteItemById(id: number) {
-    this.items = this.items.filter(item => item.id != id);
+    this.http.post('/api/delete', {id: id})
+    .map((res:Response) => res.json())
+    .subscribe(val => {
+      this.items = val;
+      console.log('Updating items: ', this.items);
+    });
     return this;
   }
 
   toggleStatusById(id: number) {
-    this.items.map(item => {
-      if(item.id == id) {
-        item.done = !item.done;
-      }
+    this.http.post('/api/mark', {id: id})
+    .map((res:Response) => res.json())
+    .subscribe(val => {
+      this.items = val;
+      console.log('Updating items: ', this.items);
     });
     return this;
   }

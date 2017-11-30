@@ -1,14 +1,16 @@
 {
   "name": "todo-list",
-  "version": "0.0.0",
-  "license": "MIT",
+  "version": "0.1.0",
+  "author": "Davide Bianchini",
+  "license": "Apache-2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "dev": "./node_modules/nodemon/bin/nodemon.js server.js"
   },
   "private": true,
   "dependencies": {
@@ -22,7 +24,10 @@
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
     "core-js": "^2.4.1",
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "morgan-body": "^2.0.2",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
@@ -45,6 +50,7 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.4.2"
+    "typescript": "~2.4.2",
+    "nodemon": "^1.12.1"
   }
 }

@@ -12,8 +12,8 @@
           <input class="toggle" type="checkbox" (click)="markAsDone(item)" [checked]="item.done">
           <label>{{item.description}}</label>
           <button class="delete" (click)="deleteItem(item)">Delete</button>
-          <input class="edit-item" placeholder="edit text" ng-value="edited" [(ngModel)]="edited">
-          <button class="edit-button" (click)="editItem(item, edited)">Edit</button>
+          <!-- <input class="edit-item" placeholder="edit text" ng-value="edited" [(ngModel)]="edited">
+          <button class="edit-button" (click)="editItem(item, edited)">Edit</button> -->
         </div>
       </li>
     </ul>
