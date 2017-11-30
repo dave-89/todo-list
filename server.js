@@ -11,11 +11,7 @@ app.use(express.static('dist'));
 
 morganBody(app);
 
-var items = [{
-    id: '0',
-    description: 'milk',
-    done: false
-}];
+var items = [];
 
 app.get('/', (req, res) => {
     res.sendFile('dist/index.html');
